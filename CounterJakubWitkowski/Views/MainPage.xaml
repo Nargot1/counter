@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CounterJakubWitkowski.MainPage"
+             x:Name="MainPageRef">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Counters"
+                   FontSize="36"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="#222"/>
+            <CollectionView ItemsSource="{Binding Counters}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="8"
+                            Padding="12"
+                            Stroke="Gray"
+                            StrokeThickness="2"
+                            BackgroundColor="{Binding color}">
+                            <VerticalStackLayout Spacing="12"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                                <Label Text="{Binding name}"
+                                   FontSize="22"
+                                   TextColor="{Binding invertedColor}"
+                                   HorizontalOptions="Center"/>
+
+                                <Label Text="{Binding value}"
+                                   FontSize="48"
+                                   TextColor="{Binding invertedColor}"
+                                   HorizontalOptions="Center"/>
+
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="16">
+                                    <Button Text="-"
+                                        WidthRequest="60"
+                                        HeightRequest="60"
+                                        FontSize="28"
+                                        CornerRadius="10"
+                                        HorizontalOptions="Center"
+                                        Command="{Binding BindingContext.SubtractFromCounterCommand, Source={x:Reference MainPageRef}}"
+                                        CommandParameter="{Binding id}"/>
+
+                                    <Button Text="+"
+                                        WidthRequest="60"
+                                        HeightRequest="60"
+                                        FontSize="28"
+                                        CornerRadius="10"
+                                        HorizontalOptions="Center"
+                                        Command="{Binding BindingContext.AddToCounterCommand, Source={x:Reference MainPageRef}}"
+                                        CommandParameter="{Binding id}"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                                    <Button Text="Reset"
+                                        BackgroundColor="DimGray"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        Command="{Binding BindingContext.ResetCounterCommand, Source={x:Reference MainPageRef}}"
+                                        CommandParameter="{Binding id}"/>
+
+                                    <Button Text="Remove"
+                                        BackgroundColor="DarkRed"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        Command="{Binding BindingContext.RemoveCounterCommand, Source={x:Reference MainPageRef}}"
+                                        CommandParameter="{Binding id}"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+            <Frame BackgroundColor="White"
+                   BorderColor="#C5C5C7"
+                   HasShadow="True"
+                   CornerRadius="15"
+                   Padding="15">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Add new counter"
+                           FontSize="22"
+                           FontAttributes="Bold"/>
+
+                    <Entry x:Name="counterName"
+                           Placeholder="Counter name"
+                           TextColor="Black"
+                           FontSize="18"/>
+
+                    <Entry x:Name="counterDefault"
+                           Placeholder="Default value"
+                           Keyboard="Numeric"
+                           TextColor="Black"
+                           FontSize="18"/>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Color" TextColor="Black" FontSize="18"/>
+
+                        <Slider x:Name="sliderR" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Label Text="Red" TextColor="Red"/>
+
+                        <Slider x:Name="sliderG" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Label Text="Green" TextColor="Lime"/>
+
+                        <Slider x:Name="sliderB" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Label Text="Blue" TextColor="Blue"/>
+
+                        <Border x:Name="colorPreview"
+                            HeightRequest="40"
+                            Stroke="Gray"
+                            StrokeThickness="1"
+                            BackgroundColor="White"
+                            StrokeShape="RoundRectangle 6"/>
+                    </VerticalStackLayout>
+
+                    <Button Text="Add Counter"
+                            FontSize="18"
+                            CornerRadius="10"
+                            BackgroundColor="#007AFF"
+                            TextColor="White"
+                            Clicked="AddCounter_Clicked"/>
+                </VerticalStackLayout>
+
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
