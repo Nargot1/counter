@@ -2,16 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CounterJakubWitkowski.MainPage"
-             x:Name="MainPageRef">
+             x:Name="MainPageRef"
+             Title="Counters">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-
-            <Label Text="Counters"
-                   FontSize="36"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="#222"/>
             <CollectionView ItemsSource="{Binding Counters}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -23,15 +18,19 @@
                             <VerticalStackLayout Spacing="12"
                                  HorizontalOptions="Center"
                                  VerticalOptions="Center">
-                                <Label Text="{Binding name}"
-                                   FontSize="22"
-                                   TextColor="{Binding invertedColor}"
-                                   HorizontalOptions="Center"/>
-
-                                <Label Text="{Binding value}"
-                                   FontSize="48"
-                                   TextColor="{Binding invertedColor}"
-                                   HorizontalOptions="Center"/>
+                                <Frame BackgroundColor="Black">
+                                    <Label Text="{Binding name}"
+                                       FontSize="22"
+                                       TextColor="#FFFFFF"
+                                       HorizontalOptions="Center"/>
+                                </Frame>
+                                <Frame
+                                    BackgroundColor="Black">
+                                    <Label Text="{Binding value}"
+                                       FontSize="48"
+                                       TextColor="#FFFFFF"
+                                       HorizontalOptions="Center"/>
+                                </Frame>
 
                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="16">
                                     <Button Text="-"
@@ -102,13 +101,13 @@
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Color" TextColor="Black" FontSize="18"/>
 
-                        <Slider x:Name="sliderR" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Slider x:Name="sliderR" Minimum="0" Maximum="255" BackgroundColor="Red" ValueChanged="ColorSlider_ValueChanged"/>
                         <Label Text="Red" TextColor="Red"/>
 
-                        <Slider x:Name="sliderG" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Slider x:Name="sliderG" Minimum="0" Maximum="255" BackgroundColor="Lime" ValueChanged="ColorSlider_ValueChanged"/>
                         <Label Text="Green" TextColor="Lime"/>
 
-                        <Slider x:Name="sliderB" Minimum="0" Maximum="255" ValueChanged="ColorSlider_ValueChanged"/>
+                        <Slider x:Name="sliderB" Minimum="0" Maximum="255" BackgroundColor="Blue" ValueChanged="ColorSlider_ValueChanged"/>
                         <Label Text="Blue" TextColor="Blue"/>
 
                         <Border x:Name="colorPreview"
